@@ -5,6 +5,7 @@ services:
     image: drone/drone:1.0.0-rc.5
     volumes:
       - drone-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - DRONE_GITHUB_SERVER=https://github.com
       - DRONE_GITHUB_CLIENT_ID=${DRONE_GITHUB_CLIENT_ID}
@@ -16,6 +17,7 @@ services:
       - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}
       - DRONE_LOGS_DEBUG=true
       - DRONE_USER_FILTER=sakti,myabuy
+      - DRONE_RUNNER_CAPACITY=4
     ports:
       - '80:80'
       - '443:443'
