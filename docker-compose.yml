@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  drone:
+    image: drone/drone:1.0.0-rc.5
+    volumes:
+      - drone-data:/data
+    environment:
+      - DRONE_GITHUB_SERVER=https://github.com
+      - DRONE_GITHUB_CLIENT_ID=${DRONE_GITHUB_CLIENT_ID}
+      - DRONE_GITHUB_CLIENT_SECRET=${DRONE_GITHUB_CLIENT_SECRET}
+      - DRONE_SERVER_HOST=build.saktidwicahyono.name
+      - DRONE_SERVER_PROTO=https
+      - DRONE_TLS_AUTOCERT=true
+      - DRONE_USER_CREATE=username:sakti,admin:true
+      - DRONE_RPC_SECRET=${DRONE_RPC_SECRET}
+      - DRONE_LOGS_DEBUG=true
+      - DRONE_USER_FILTER=sakti,myabuy
+    ports:
+      - '80:80'
+      - '443:443'
+    restart: always
+
+volumes:
+  drone-data:
